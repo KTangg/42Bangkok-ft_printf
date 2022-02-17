@@ -1,0 +1,7 @@
+main.c
+a.out
+a.exe
+*test*
+*.o
+libftprintf.a
+libft.a

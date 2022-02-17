@@ -25,9 +25,12 @@ $(NAME): $(OBJS)
 bonus: $(OBJS_BONUS)
 	ar -rcs $(NAME) $^
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -I $(INCS) -o $@
+	$(CC) $(CFLAGS) -c $< -I $(INCS) -L. -lft -o $@
 clean:
 	$(RM) $(OBJS_BONUS)
 fclean: clean
 	$(RM) $(NAME)
 re: fclean all
+test: all
+	$(CC) $(CFLAGS) main.c -L. -lft && ./a.out
+	rm a.out
