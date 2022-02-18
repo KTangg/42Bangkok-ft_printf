@@ -15,10 +15,12 @@
 char	*get_ud(va_list *arg)
 {
 	char			*str;
-	unsigned int	i;
+	int				i;
+	unsigned int	u;
 
-	i = va_arg(*arg, unsigned int);
-	str = ft_itoa(i);
+	i = va_arg(*arg, int);
+	u = (unsigned int)i;
+	str = ft_itoa(u);
 	return (str);
 }
 

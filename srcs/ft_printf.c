@@ -17,9 +17,11 @@ int	ft_printf(const char *format, ...)
 {
 	char	*str;
 	va_list	arg;
+	va_list	*ptr;
 
 	va_start(arg, format);
-	str = create_str((char *)format, arg);
+	ptr = &arg;
+	str = create_str((char *)format, ptr);
 	if (!str)
 		return (0);
 	ft_putstr_fd(str, 1);

@@ -102,7 +102,7 @@ char	*make_str(char *str, char *format, va_list *arg)
 	return (str);
 }
 
-char	*create_str(char *format, va_list arg)
+char	*create_str(char *format, va_list *arg)
 {
 	char	*str;
 
@@ -110,7 +110,7 @@ char	*create_str(char *format, va_list arg)
 	if (!str)
 		return (NULL);
 	str[0] = '\0';
-	str = make_str(str, format, &arg);
+	str = make_str(str, format, arg);
 	if (!str)
 		return (NULL);
 	return (str);
