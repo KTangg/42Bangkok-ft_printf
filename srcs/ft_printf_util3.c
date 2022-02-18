@@ -10,25 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "libftprintf.h"
 
 char	*get_ud(va_list *arg)
 {
-	(void)arg;
-	return (0);
-}
+	char			*str;
+	unsigned int	i;
 
-char	*get_hexl(va_list *arg)
-{
-	(void)arg;
-	return (0);
-}
-
-char	*get_hexu(va_list *arg)
-{
-	(void)arg;
-	return (0);
+	i = va_arg(*arg, unsigned int);
+	str = ft_itoa(i);
+	return (str);
 }
 
 char	*get_percent(void)

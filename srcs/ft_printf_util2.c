@@ -66,8 +66,6 @@ char	*get_dec(va_list *arg)
 
 	i = va_arg(*arg, int);
 	str = ft_itoa(i);
-	if (!str)
-		return (NULL);
 	return (str);
 }
 
@@ -78,7 +76,5 @@ char	*get_int(va_list *arg)
 
 	i = va_arg(*arg, int);
 	str = ft_itoa(i);
-	if (!str)
-		return (NULL);
 	return (str);
 }
