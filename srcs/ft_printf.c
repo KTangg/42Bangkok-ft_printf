@@ -24,6 +24,7 @@ int	ft_printf(const char *format, ...)
 	if (!str)
 		return (0);
 	ft_putstr_fd(str, 1);
+	free(str);
 	va_end(arg);
 	return (1);
 }

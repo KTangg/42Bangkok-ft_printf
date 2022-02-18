@@ -33,4 +33,3 @@ fclean: clean
 re: fclean all
 test: all
 	$(CC) $(CFLAGS) -I $(INCS) main.c -L. -lftprintf && ./a.out
-	@rm a.out
