@@ -24,7 +24,7 @@
 
 #include "libftprintf.h"
 
-static char	null_char(int *i)
+static char	*null_char(int *i)
 {
 	char	*str;
 
