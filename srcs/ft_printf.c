@@ -91,6 +91,7 @@ static void	*make_buffer(void *buffer, char *format, va_list *arg, size_t *size)
 				return (NULL);
 			((unsigned char *)buffer)[*size] = (unsigned char)*format;
 			*size = *size + 1;
+			format++;
 		}
 	}
 	return (buffer);
