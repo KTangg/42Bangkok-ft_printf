@@ -19,6 +19,6 @@ char	*get_format(char **format)
 	var_format = (char *)malloc(sizeof(char) * 2);
 	var_format[0] = *((*format) + 1);
 	var_format[1] = '\0';
-	*format = *format + 1;
+	*format = *format + 2;
 	return (var_format);
 }

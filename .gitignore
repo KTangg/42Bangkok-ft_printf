@@ -5,3 +5,4 @@ a.exe
 *.o
 libftprintf.a
 libft.a
+*Test*
