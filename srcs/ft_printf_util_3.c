@@ -42,7 +42,6 @@ static char	*create_hex_char(long nbr, char *base_16)
 
 static char	*int_to_hex(long nbr, int mode)
 {
-	int		minus;
 	char	*base_16;
 	char	*hex_str;
 
