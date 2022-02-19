@@ -13,6 +13,16 @@
 #include "libftprintf.h"
 #include <stdio.h>
 
+char	*get_int(va_list *arg)
+{
+	int	i;
+	char	*str;
+
+	i = va_arg(*arg, int);
+	str = ft_itoa(i);
+	return (str);
+}
+
 char	*get_ud(va_list *arg)
 {
 	char			*str;
