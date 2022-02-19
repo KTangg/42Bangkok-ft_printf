@@ -57,8 +57,6 @@ void	*memjoin(void *ptr1, void *ptr2, size_t p1_size, size_t p2_size)
 	new_ptr = realloc_printf(ptr1, p1_size, p1_size + p2_size);
 	if (new_ptr)
 		ft_memcpy((new_ptr + p1_size), ptr2, p2_size);
-	if (ptr1)
-		free(ptr1);
 	if (ptr2)
 		free(ptr2);
 	return (new_ptr);
