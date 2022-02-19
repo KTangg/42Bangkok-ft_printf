@@ -24,12 +24,14 @@
 
 #include "libftprintf.h"
 
-char	*get_char(va_list *arg)
+char	*get_char(va_list *arg, int *i)
 {
 	int	c;
 	char	*str;
 
 	c = va_arg(*arg, int);
+	if (c == 0)
+		*i = *i + 1;
 	str = (char *)malloc(sizeof(char) * 2);
 	if (!str)
 		return (NULL);

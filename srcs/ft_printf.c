@@ -21,11 +21,12 @@ int	ft_printf(const char *format, ...)
 
 	va_start(arg, format);
 	ptr = &arg;
-	str = create_str((char *)format, ptr);
+	i = 0;
+	str = create_str((char *)format, ptr, &i);
 	if (!str)
 		return (0);
 	ft_putstr_fd(str, 1);
-	i = ft_strlen(str);
+	i = i + ft_strlen(str);
 	free(str);
 	va_end(arg);
 	return (i);

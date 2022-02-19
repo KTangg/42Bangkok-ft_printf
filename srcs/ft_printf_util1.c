@@ -12,12 +12,12 @@
 
 #include "libftprintf.h"
 
-char	*var_to_str(char c, va_list *arg)
+char	*var_to_str(char c, va_list *arg, int *i)
 {
 	char	*str2;
 
 	if (c == 'c')
-		str2 = get_char(arg);
+		str2 = get_char(arg, i);
 	else if (c == 's')
 		str2 = get_str(arg);
 	else if (c == 'p')
@@ -61,12 +61,12 @@ char	*append_str(char *str1, char *start, size_t n)
 	return (tmp);
 }
 
-char	*append_variable(char *str1, char c, va_list *arg)
+char	*append_variable(char *str1, char c, va_list *arg, int *i)
 {
 	char	*tmp;
 	char	*str2;
 
-	str2 = var_to_str(c, arg);
+	str2 = var_to_str(c, arg, i);
 	if (!str2)
 		return (NULL);
 	tmp = ft_strjoin(str1, str2);
@@ -75,34 +75,34 @@ char	*append_variable(char *str1, char c, va_list *arg)
 	return (tmp);
 }
 
-char	*make_str(char *str, char *format, va_list *arg)
+char	*make_str(char *str, char *format, va_list *arg, int *i)
 {
-	int		i;
+	int		index;
 	char	*start;
 
 	start = (char *)format;
-	i = 0;
-	while (format[i] != '\0')
+	index = 0;
+	while (format[index] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[index] == '%')
 		{
-			str = append_str(str, start, &format[i] - start);
+			str = append_str(str, start, &format[index] - start);
 			if (!str)
 				return (NULL);
-			start = &format[i] + 2;
-			str = append_variable(str, format[i++ + 1], arg);
+			start = &format[index] + 2;
+			str = append_variable(str, format[index++ + 1], arg, i);
 			if (!str)
 				return (NULL);
 		}
 		i++;
 	}
-	str = append_str(str, start, &format[i] - start);
+	str = append_str(str, start, &format[index] - start);
 	if (!str)
 		return (NULL);
 	return (str);
 }
 
-char	*create_str(char *format, va_list *arg)
+char	*create_str(char *format, va_list *arg, int *i)
 {
 	char	*str;
 
@@ -110,7 +110,7 @@ char	*create_str(char *format, va_list *arg)
 	if (!str)
 		return (NULL);
 	str[0] = '\0';
-	str = make_str(str, format, arg);
+	str = make_str(str, format, arg, i);
 	if (!str)
 		return (NULL);
 	return (str);
