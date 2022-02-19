@@ -94,7 +94,7 @@ char	*make_str(char *str, char *format, va_list *arg, int *i)
 			if (!str)
 				return (NULL);
 		}
-		i++;
+		index++;
 	}
 	str = append_str(str, start, &format[index] - start);
 	if (!str)
