@@ -27,7 +27,7 @@ int	ft_printf(const char *format, ...)
 	return (done);
 }
 
-static size_t	read_var(char *var_format, size_t *var_size, va_list *arg)
+static void	*read_var(char *var_format, size_t *var_size, va_list *arg)
 {
 	char	c;
 	void	*var;
