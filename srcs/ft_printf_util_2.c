@@ -40,9 +40,3 @@ void	*get_percent(size_t *var_size)
 		((unsigned char *)var)[0] = (unsigned char)'%';
 	return (var);
 }
-
-void	*get_ptr(va_list *arg)
-{
-	(void)arg;
-	return (NULL);
-}
