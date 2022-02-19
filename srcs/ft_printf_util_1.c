@@ -78,7 +78,7 @@ void	*get_dec(va_list *arg, size_t *var_size)
 	if (!str)
 		return (NULL);
 	*var_size = ft_strlen(str);
-	var = malloc(var_size);
+	var = malloc(*var_size);
 	if (var)
 		var = ft_memcpy(var, str, *var_size);
 	free(str);
@@ -96,7 +96,7 @@ void	*get_int(va_list *arg, size_t *var_size)
 	if (!str)
 		return (NULL);
 	*var_size = ft_strlen(str);
-	var = malloc(var_size);
+	var = malloc(*var_size);
 	if (var)
 		var = ft_memcpy(var, str, *var_size);
 	free(str);
