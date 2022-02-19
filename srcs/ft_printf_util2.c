@@ -26,14 +26,14 @@
 
 char	*get_char(va_list *arg)
 {
-	char	c;
+	int	c;
 	char	*str;
 
 	c = va_arg(*arg, int);
 	str = (char *)malloc(sizeof(char) * 2);
 	if (!str)
 		return (NULL);
-	str[0] = c;
+	str[0] = (unsigned char)c;
 	str[1] = '\0';
 	return (str);
 }
