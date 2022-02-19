@@ -38,6 +38,18 @@ char	*get_char(va_list *arg)
 	return (str);
 }
 
+static char	*null_str(void)
+{
+	char	*null;
+	char	*str;
+
+	null = "(null)";
+	str = (char *)malloc(sizeof(char) * 7);
+	if (str)
+		ft_strlcpy(str, null, 7);
+	return (str);
+}
+
 char	*get_str(va_list *arg)
 {
 	char	*s;
@@ -45,18 +57,14 @@ char	*get_str(va_list *arg)
 	size_t	len;
 
 	s = va_arg(*arg, char *);
+	if (!s)
+		return (null_str());
 	len = ft_strlen(s);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	ft_strlcpy(str, s, len + 1);
 	return (str);
-}
-
-char	*get_ptr(va_list *arg)
-{
-	(void)arg;
-	return (NULL);
 }
 
 char	*get_dec(va_list *arg)

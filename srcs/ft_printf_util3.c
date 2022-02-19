@@ -34,5 +34,11 @@ char	*get_percent(void)
 		return (NULL);
 	str[0] = '%';
 	str[1] = '\0';
-	return (0);
+	return (str);
+}
+
+char	*get_ptr(va_list *arg)
+{
+	(void)arg;
+	return (NULL);
 }
