@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 void	*get_char(va_list *arg, size_t *var_size)
 {

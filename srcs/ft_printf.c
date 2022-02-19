@@ -67,6 +67,7 @@ static void	*append_variable(void *buffer, size_t *size, char **format, va_list 
 		return (NULL);
 	var = read_var(var_format, &var_size, arg);
 	/*var = extend_format(var_format, var, &var_size);*/
+	free(var_format);
 	if (!var)
 		return (NULL);
 	buffer = memjoin(buffer, var, *size, var_size);
@@ -108,5 +109,6 @@ static size_t	print_out(char *format, va_list *arg)
 	if (!buffer)
 		return (0);
 	write(1, buffer, size);
+	free(buffer);
 	return (size);
 }

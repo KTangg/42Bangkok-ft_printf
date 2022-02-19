@@ -42,8 +42,13 @@ void	*realloc_printf(void *ptr, size_t old_size, size_t new_size)
 	void	*new_ptr;
 
 	new_ptr = malloc(new_size);
-	if (ptr == NULL || old_size == 0)
+	if (ptr == NULL)
 		return (new_ptr);
+	if (old_size == 0)
+	{
+		free(ptr);
+		return(new_ptr);
+	}
 	if (new_ptr)
 		ft_memcpy(new_ptr, ptr, old_size);
 	free(ptr);

@@ -72,12 +72,14 @@ void	*get_hex(va_list *arg, size_t *var_size, int mode)
 		var = malloc(*var_size);
 		if (var)
 			var = ft_memcpy(var, &str[len - 7], 8);
+		free(str);
 		return (var);
 	}
 	*var_size = len;
 	var = malloc(*var_size);
 	if (var)
 		var = ft_memcpy(var, str, len);
+	free(str);
 	return (var);
 }
 
