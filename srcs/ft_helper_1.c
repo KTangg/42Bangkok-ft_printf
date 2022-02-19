@@ -12,59 +12,54 @@
 
 #include "libftprintf.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
 	size_t	len;
 
 	len = 0;
-	while (s[len] != '\0')
+	if (!str)
+		return (len);
+	while (str[len] != '\0')
 		len++;
 	return (len);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while ((i + 1) < dstsize && src[i] != '\0')
+	while (i < n)
 	{
-		dst[i] = src[i];
+		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
 		i++;
 	}
-	if (dstsize > 0)
-		dst[i] = '\0';
-	return (ft_strlen(src));
+	return (dst);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*realloc_printf(void *ptr, size_t old_size, size_t new_size)
 {
-	size_t	i;
-	size_t	dst_len;
+	void	*new_ptr;
 
-	dst_len = ft_strlen(dst);
-	if (dst_len >= dstsize)
-		return (dstsize + ft_strlen(src));
-	i = 0;
-	while ((dst_len + i + 1) < dstsize && src[i] != '\0')
-	{
-		dst[i + dst_len] = src[i];
-		i++;
-	}
-	dst[i + dst_len] = '\0';
-	return (dst_len + ft_strlen(src));
+	new_ptr = malloc(new_size);
+	if (ptr == NULL || old_size == 0)
+		return (new_ptr);
+	if (new_ptr)
+		ft_memcpy(new_ptr, ptr, old_size);
+	free(ptr);
+	return (new_ptr);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+void	*memjoin(void *ptr1, void *ptr2, size_t p1_size, size_t p2_size)
 {
-	char	*str;
-	size_t	len;
+	void	*new_ptr;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
-	ft_strlcat(str, s2, len + 1);
-	return (str);
+	new_ptr = realloc_printf(ptr1, p1_size, p1_size + p2_size);
+	if (new_ptr)
+		ft_memcpy(&new_ptr[(int)p1_size], ptr2, p2_size);
+	if (ptr1)
+		free(ptr1);
+	if (ptr2)
+		free(ptr2);
+	return (new_ptr);
 }

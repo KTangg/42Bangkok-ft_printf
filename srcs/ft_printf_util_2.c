@@ -11,43 +11,37 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-char	*get_int(va_list *arg)
-{
-	int	i;
-	char	*str;
-
-	i = va_arg(*arg, int);
-	str = ft_itoa(i);
-	return (str);
-}
-
-char	*get_ud(va_list *arg)
+void	*get_ud(va_list *arg, size_t *var_size)
 {
 	char			*str;
-	int				i;
+	void			*var;
 	unsigned int	u;
 
-	i = va_arg(*arg, int);
-	u = (unsigned int)i;
+	u = va_arg(*arg, unsigned int);
 	str = ft_itoa(u);
-	return (str);
-}
-
-char	*get_percent(void)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * 2);
 	if (!str)
 		return (NULL);
-	str[0] = '%';
-	str[1] = '\0';
-	return (str);
+	*var_size = ft_strlen(str);
+	var = malloc(*var_size);
+	if (var)
+		var = ft_memcpy(var, str, *var_size);
+	free(str);
+	return (var);
 }
 
-char	*get_ptr(va_list *arg)
+void	*get_percent(size_t *var_size)
+{
+	void	*var;
+
+	*var_size = 1;
+	var = malloc(*var_size);
+	if (var)
+		((unsigned char *)var)[0] = (unsigned char)'%';
+	return (var);
+}
+
+void	*get_ptr(va_list *arg)
 {
 	(void)arg;
 	return (NULL);

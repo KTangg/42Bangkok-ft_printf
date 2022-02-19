@@ -5,23 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 16:48:51 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/18 19:10:24 by spoolpra         ###   ########.fr       */
+/*   Created: 2022/02/19 23:20:24 by spoolpra          #+#    #+#             */
+/*   Updated: 2022/02/19 23:20:24 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	while (*s != '\0')
-		ft_putchar_fd(*s++, fd);
-}
 
 static int	int_size(long n)
 {
@@ -52,19 +41,17 @@ char	*ft_itoa(long n)
 {
 	int			size;
 	char		*str;
-	long int	l_n;
 
-	l_n = (long)n;
-	size = int_size(l_n);
+	size = int_size(n);
 	str = (char *)malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (NULL);
-	if (l_n < 0)
+	if (n < 0)
 	{
-		l_n = l_n * -1;
+		n = n * -1;
 		str[0] = '-';
 	}
-	str = to_alpha(l_n, size, str);
+	str = to_alpha(n, size, str);
 	str[size] = '\0';
 	return (str);
 }

@@ -40,57 +40,51 @@ static char	*create_hex_char(long nbr, char *base_16)
 	return (str);
 }
 
-static char	*add_minus(char *nbr)
-{
-	char	*tmp;
-	char	*minus;
-
-	tmp = nbr;
-	minus = "-";
-	nbr = ft_strjoin(minus, nbr);
-	free(tmp);
-	return (nbr);
-}
-
 static char	*int_to_hex(long nbr, int mode)
 {
 	int		minus;
 	char	*base_16;
 	char	*hex_str;
 
-	minus = 0;
 	if (nbr < 0)
-	{
-		nbr = nbr * -1;
-		minus = 1;
-	}
+		nbr = 4294967295 + (nbr + 1);
 	base_16 = "0123456789ABCDEF";
 	if (mode == 0)
 		base_16 = "0123456789abcdef";
 	hex_str = create_hex_char(nbr, base_16);
-	if (!hex_str)
-		return (NULL);
-	if (minus)
-		hex_str = add_minus(hex_str);
 	return (hex_str);
 }
 
-char	*get_hexl(va_list *arg)
+void	*get_hex(va_list *arg, size_t *var_size, int mode)
 {
 	int		nbr;
 	char	*str;
+	void	*var;
+	size_t	len;
 
 	nbr = va_arg(*arg, int);
-	str = int_to_hex(nbr, 0);
-	return (str);
+	str = int_to_hex(nbr, mode);
+	if (!str)
+		return (NULL);
+	len = ft_strlen(str);
+	if (len > 8)
+	{
+		*var_size = 8;
+		var = malloc(*var_size);
+		if (var)
+			var = ft_memcpy(var, &str[len - 7], 8);
+		return (var);
+	}
+	*var_size = len;
+	var = malloc(*var_size);
+	if (var)
+		var = ft_memcpy(var, str, len);
+	return (var);
 }
 
-char	*get_hexu(va_list *arg)
+void	*get_ptr(va_list *arg, size_t *var_size)
 {
-	int		nbr;
-	char	*str;
-
-	nbr = va_arg(*arg, int);
-	str = int_to_hex(nbr, 1);
-	return (str);
+	(void)arg;
+	(void)var_size;
+	return (NULL);
 }

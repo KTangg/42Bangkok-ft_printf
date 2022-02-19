@@ -24,68 +24,81 @@
 
 #include "libftprintf.h"
 
-static char	*null_char(int *i)
+void	*get_char(va_list *arg, size_t *var_size)
 {
-	char	*str;
+	int		c;
+	void	*var;
 
-	*i = *i + 1;
-	str = (char *)malloc(sizeof(char) * 1);
-	if (str)
-		str[0] = '\0';
-	return (str);
-}
-
-char	*get_char(va_list *arg, int *i)
-{
-	int	c;
-	char	*str;
-
+	*var_size = 1;
 	c = va_arg(*arg, int);
-	if (c == 0)
-		return (null_char(i));
-	str = (char *)malloc(sizeof(char) * 2);
-	if (!str)
-		return (NULL);
-	str[0] = (unsigned char)c;
-	str[1] = '\0';
-	return (str);
+	var = malloc(sizeof(unsigned char) * 1);
+	if (var)
+		var = ft_memcpy(var, &c, 1);
+	return (var);
 }
 
-static char	*null_str(void)
+static void	*null_str(size_t *var_size)
 {
 	char	*null;
-	char	*str;
+	void	*var;
 
 	null = "(null)";
-	str = (char *)malloc(sizeof(char) * 7);
-	if (str)
-		ft_strlcpy(str, null, 7);
-	return (str);
+	var = malloc(sizeof(char) * 6);
+	*var_size = 6;
+	if (var)
+		var = ft_memcpy(var, null, 6);
+	return (var);
 }
 
-char	*get_str(va_list *arg)
+void	*get_str(va_list *arg, size_t *var_size)
 {
-	char	*s;
+	void	*var;
 	char	*str;
 	size_t	len;
 
-	s = va_arg(*arg, char *);
-	if (!s)
-		return (null_str());
-	len = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = va_arg(*arg, char *);
 	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s, len + 1);
-	return (str);
+		return (null_str(var_size));
+	len = ft_strlen(str);
+	*var_size = len;
+	var = malloc(len);
+	if (var)
+		var = ft_memcpy(var, str, len);
+	return (var);
 }
 
-char	*get_dec(va_list *arg)
+void	*get_dec(va_list *arg, size_t *var_size)
 {
-	int	i;
+	int		i;
 	char	*str;
+	void	*var;
 
 	i = va_arg(*arg, int);
 	str = ft_itoa(i);
-	return (str);
+	if (!str)
+		return (NULL);
+	*var_size = ft_strlen(str);
+	var = malloc(var_size);
+	if (var)
+		var = ft_memcpy(var, str, *var_size);
+	free(str);
+	return (var);
+}
+
+void	*get_int(va_list *arg, size_t *var_size)
+{
+	int		i;
+	char	*str;
+	void	*var;
+
+	i = va_arg(*arg, int);
+	str = ft_itoa(i);
+	if (!str)
+		return (NULL);
+	*var_size = ft_strlen(str);
+	var = malloc(var_size);
+	if (var)
+		var = ft_memcpy(var, str, *var_size);
+	free(str);
+	return (var);
 }
