@@ -6,7 +6,7 @@
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:50:48 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/18 18:29:53 by spoolpra         ###   ########.fr       */
+/*   Updated: 2022/02/20 01:17:54 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,28 @@ int	ft_printf(const char *format, ...)
 static void	*read_var(char *var_format, size_t *var_size, va_list *arg)
 {
 	char	c;
-	void	*var;
 
 	while (*var_format != '\0')
 		c = *var_format++;
 	if (c == 'c')
-		var = get_char(arg, var_size);
+		return (get_char(arg, var_size));
 	else if (c == 's')
-		var = get_str(arg, var_size);
+		return (get_str(arg, var_size));
 	else if (c == 'p')
-		var = get_ptr(arg, var_size);
+		return (get_ptr(arg, var_size));
 	else if (c == 'd')
-		var = get_dec(arg, var_size);
+		return (get_dec(arg, var_size));
 	else if (c == 'i')
-		var = get_int(arg, var_size);
+		return (get_int(arg, var_size));
 	else if (c == 'u')
-		var = get_ud(arg, var_size);
+		return (get_ud(arg, var_size));
 	else if (c == 'x')
-		var = get_hex(arg, var_size, 0);
+		return (get_hex(arg, var_size, 0));
 	else if (c == 'X')
-		var = get_hex(arg, var_size, 1);
+		return (get_hex(arg, var_size, 1));
 	else if (c == '%')
-		var = get_percent(var_size);
-	return (var);
+		return (get_percent(var_size));
+	return (NULL);
 }
 
 static void	*append_variable(void *buffer, size_t *size, char **format, va_list *arg)
