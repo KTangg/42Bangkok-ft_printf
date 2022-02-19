@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf.h"
+
 char	*get_format(char **format)
 {
 	char	*var_format;
