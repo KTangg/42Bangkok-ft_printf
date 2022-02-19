@@ -6,7 +6,7 @@
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 16:48:51 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/18 16:48:51 by spoolpra         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:10:24 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*to_alpha(long n, int size, char *str)
 	return (str);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
 	int			size;
 	char		*str;

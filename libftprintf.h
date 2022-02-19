@@ -6,7 +6,7 @@
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:11:17 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/17 22:41:47 by spoolpra         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:10:38 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
-char	*ft_itoa(int n);
+char	*ft_itoa(long n);
 char	*get_percent(void);
 char	*get_ud(va_list *arg);
 char	*get_ptr(va_list *arg);

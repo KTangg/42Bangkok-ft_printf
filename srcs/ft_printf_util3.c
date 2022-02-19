@@ -6,11 +6,12 @@
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 03:31:52 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/18 03:31:52 by spoolpra         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:09:31 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 char	*get_ud(va_list *arg)
 {

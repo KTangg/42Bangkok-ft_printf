@@ -6,7 +6,7 @@
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 22:50:48 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/17 22:50:48 by spoolpra         ###   ########.fr       */
+/*   Updated: 2022/02/18 18:29:53 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_printf(const char *format, ...)
 {
+	int		i;
 	char	*str;
 	va_list	arg;
 	va_list	*ptr;
@@ -24,7 +25,8 @@ int	ft_printf(const char *format, ...)
 	if (!str)
 		return (0);
 	ft_putstr_fd(str, 1);
+	i = ft_strlen(str);
 	free(str);
 	va_end(arg);
-	return (1);
+	return (i);
 }
