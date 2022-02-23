@@ -35,7 +35,8 @@ static int	valid_prefix(char *format)
 			return (0);
 		format++;
 	}
-	while (ft_isdigit(*format++));
+	while (ft_isdigit(*format))
+		format++;
 	if (*format != c)
 		return (0);
 	return (1);
