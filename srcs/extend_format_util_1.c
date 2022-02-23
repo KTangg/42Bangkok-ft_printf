@@ -110,8 +110,3 @@ int	extend_min(void **var, size_t *var_size, char **var_format, size_t org)
 	}
 	return (1);
 }
-
-static int for_pull(void)
-{
-	return 0;
-}
