@@ -52,19 +52,6 @@ static char	*int_to_hex(unsigned long nbr, int mode)
 	return (hex_str);
 }
 
-static void	*nil_char(size_t *var_size)
-{
-	char	*nil;
-	void	*var;
-
-	nil = "(nil)";
-	var = malloc(sizeof(char) * 5);
-	*var_size = 5;
-	if (var)
-		var = ft_memcpy(var, nil, 5);
-	return (var);
-}
-
 void	*get_ptr(va_list *arg, size_t *var_size)
 {
 	char			*hex;
@@ -72,8 +59,6 @@ void	*get_ptr(va_list *arg, size_t *var_size)
 	unsigned char	*ptr;
 
 	ptr = (unsigned char *)va_arg(*arg, void *);
-	if (!ptr)
-		return (nil_char(var_size));
 	hex = int_to_hex((unsigned long)ptr, 0);
 	if (!hex)
 		return (NULL);
