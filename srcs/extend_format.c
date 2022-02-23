@@ -22,6 +22,8 @@ static int	extend_hex(void **var, size_t *var_size, char **var_format, char c)
 	char	*prefix_str;
 
 	*var_format = *var_format + 1;
+	if (((unsigned char *)*var)[0] == 0)
+		return (1);
 	prefix_str = "0x";
 	if (c == 'X')
 		prefix_str = "0X";
