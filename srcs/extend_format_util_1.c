@@ -34,8 +34,6 @@ int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org)
 	*var_format = *var_format + 1;
 	min = ft_atoi(*var_format);
 	extend = *var_size - org;
-	if (min < 0)
-		return (0);
 	if (min > *var_size)
 	{
 		fill = min - *var_size;
@@ -62,8 +60,6 @@ int	extend_min(void **var, size_t *var_size, char **var_format, size_t org)
 	*var_format = *var_format + 1;
 	min = (size_t)ft_atoi(*var_format);
 	extend = *var_size - org;
-	if (min < 0)
-		return (0);
 	if (min > *var_size)
 	{
 		fill = min - *var_size;
