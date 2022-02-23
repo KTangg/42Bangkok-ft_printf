@@ -54,7 +54,7 @@ static void	*read_var(char *var_format, size_t *var_size, va_list *arg)
 	return (NULL);
 }
 
-static void	*append_variable(void *buffer, size_t *size, char **format, va_list *arg)
+static void	*append_v(void *buffer, size_t *size, char **format, va_list *arg)
 {
 	void	*var;
 	char	*var_format;
@@ -80,7 +80,7 @@ static void	*make_buffer(void *buffer, char *format, va_list *arg, size_t *size)
 	{
 		if (*format == '%')
 		{
-			buffer = append_variable(buffer, size, &format, arg);
+			buffer = append_v(buffer, size, &format, arg);
 			if (!buffer)
 				return (NULL);
 		}

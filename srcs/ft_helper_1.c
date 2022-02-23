@@ -47,7 +47,7 @@ void	*realloc_printf(void *ptr, size_t old_size, size_t new_size)
 	if (old_size == 0)
 	{
 		free(ptr);
-		return(new_ptr);
+		return (new_ptr);
 	}
 	if (new_ptr)
 		ft_memcpy(new_ptr, ptr, old_size);

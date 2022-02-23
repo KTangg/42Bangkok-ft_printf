@@ -37,6 +37,6 @@ void	*get_percent(size_t *var_size)
 	*var_size = 1;
 	var = malloc(*var_size);
 	if (var)
-		((unsigned char *)var)[0] = (unsigned char)'%';
+		((unsigned char *)var)[0] = (unsigned char) '%';
 	return (var);
 }

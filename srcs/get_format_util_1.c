@@ -12,29 +12,36 @@
 
 #include "libftprintf.h"
 
+static int	check_prefix(char **format, char c)
+{
+	if (**format == '#')
+	{
+		if (c != 'x' && c != 'X')
+			return (0);
+		*format++;
+	}
+	if (**format == ' ' || **format == '+')
+	{
+		if (c != 'd' && c != 'i')
+			return (0);
+		*format++;
+	}
+	if (**format == '0')
+	{
+		if (c != 'i' && c != 'u' && c != 'd' && c != 'x' && c != 'X')
+			return (0);
+		*format++;
+	}
+	return (1);
+}
+
 static int	valid_prefix(char *format)
 {
 	char	c;
 
 	c = format[ft_strlen(format) - 1];
-	if (*format == '#')
-	{
-		if (c != 'x' && c != 'X')
-			return (0);
-		format++;
-	}
-	if (*format == ' ' || *format == '+')
-	{
-		if (c != 'd' && c != 'i')
-			return (0);
-		format++;
-	}
-	if (*format == '0')
-	{
-		if (c != 'i' && c != 'u' && c != 'd' && c != 'x' && c != 'X')
-			return (0);
-		format++;
-	}
+	if (!check_prefix(&format, c))
+		return (0);
 	while (ft_isdigit(*format))
 		format++;
 	if (*format != c)
