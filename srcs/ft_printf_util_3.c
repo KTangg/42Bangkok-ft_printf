@@ -40,7 +40,7 @@ static char	*create_hex_char(long nbr, char *base_16)
 	return (str);
 }
 
-static char	*int_to_hex(long nbr, int mode)
+static char	*int_to_hex(long long nbr, int mode)
 {
 	char	*base_16;
 	char	*hex_str;
@@ -90,7 +90,7 @@ void	*get_ptr(va_list *arg, size_t *var_size)
 	unsigned char	*ptr;
 
 	ptr = (unsigned char *)va_arg(*arg, void *);
-	hex = int_to_hex((long int)ptr, 0);
+	hex = int_to_hex((unsigned long)ptr, 0);
 	if (!hex)
 		return (NULL);
 	*var_size = ft_strlen(hex) + 2;
