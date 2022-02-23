@@ -23,6 +23,7 @@ int		valid_flag(char *str);
 char	*ft_itoa(long n);
 char	*get_format(char **format);
 char	*ft_strjoin(const char *s1, const char *s2);
+char	*extend_format(char *var_format, void *var, size_t *var_size);
 void	*get_percent(size_t *var_size);
 void	*get_ud(va_list *arg, size_t *var_size);
 void	*get_str(va_list *arg, size_t *var_size);

@@ -35,7 +35,8 @@ static char	*append_format(char *format, char flag)
 		new_format = (char *)malloc(sizeof(char) * 2);
 		if (!new_format)
 			return (NULL);
-		ft_strlcpy(new_format, &flag, 2);
+		ft_memcpy(new_format, &flag, 1);
+		new_format[1] = '\0';
 		return (new_format);
 	}
 	len = ft_strlen(format);
@@ -57,6 +58,7 @@ char	*get_format(char **format)
 	char	*var_format;
 
 	var_format = NULL;
+	*format = *format + 1;
 	while (!conv_flag(**format) && **format != '\0')
 	{
 		var_format = append_format(var_format, **format);

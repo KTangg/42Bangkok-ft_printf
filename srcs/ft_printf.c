@@ -65,7 +65,7 @@ static void	*append_v(void *buffer, size_t *size, char **format, va_list *arg)
 	if (!var_format)
 		return (NULL);
 	var = read_var(var_format, &var_size, arg);
-	/*var = extend_format(var_format, var, &var_size);*/
+	var = extend_format(var_format, var, &var_size);
 	free(var_format);
 	if (!var)
 		return (NULL);
