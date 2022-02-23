@@ -58,3 +58,10 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	ft_strlcat(str, s2, len + 1);
 	return (str);
 }
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}

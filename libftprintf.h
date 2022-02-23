@@ -18,6 +18,8 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
+int		ft_isdigit(int c);
+int		valid_flag(char *str);
 char	*ft_itoa(long n);
 char	*get_format(char **format);
 char	*ft_strjoin(const char *s1, const char *s2);
@@ -33,5 +35,6 @@ void	*get_hex(va_list *arg, size_t *var_size, int mode);
 void	*realloc_printf(void *ptr, size_t old_size, size_t new_size);
 void	*memjoin(void *ptr1, void *ptr2, size_t p1_size, size_t p2_size);
 size_t	ft_strlen(const char *str);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif
