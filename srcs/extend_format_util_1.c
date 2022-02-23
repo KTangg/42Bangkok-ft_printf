@@ -85,28 +85,28 @@ int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org)
 int	extend_min(void **var, size_t *var_size, char **var_format, size_t org)
 {
 	size_t			fill;
-	size_t			extend;
+	size_t			ext;
 	size_t			min;
-	unsigned char	*new_var;
+	unsigned char	*new;
 
 	*var_format = *var_format + 1;
 	min = (size_t)ft_atoi(*var_format);
-	extend = *var_size - org;
+	ext = *var_size - org;
 	if (min > *var_size)
 	{
 		fill = min - *var_size;
-		new_var = malloc(min);
-		if (!new_var)
+		new = malloc(min);
+		if (!new)
 		{
 			free(var);
 			return (0);
 		}
-		ft_memcpy(new_var, *var, *var_size - org);
-		filling(&new_var[extend], fill, ' ');
-		ft_memcpy(&new_var[extend + fill], &(((unsigned char *)*var)[extend]), org);
+		ft_memcpy(new, *var, *var_size - org);
+		filling(&new[ext], fill, ' ');
+		ft_memcpy(&new[ext + fill], &(((unsigned char *)*var)[ext]), org);
 		free(*var);
 		*var_size = min;
-		*var = (void *)new_var;
+		*var = (void *)new;
 	}
 	return (1);
 }
