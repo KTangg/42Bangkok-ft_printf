@@ -26,10 +26,10 @@ static void	filling(void *var, size_t n, char c)
 
 int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org)
 {
-	int		min;
-	void	*new_var;
-	size_t	fill;
-	size_t	extend;
+	size_t			fill;
+	size_t			extend;
+	size_t			min;
+	unsigned char	*new_var;
 
 	*var_format = *var_format + 1;
 	min = ft_atoi(*var_format);
