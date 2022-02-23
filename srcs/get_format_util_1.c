@@ -22,7 +22,7 @@ static int	check_prefix(char **format, char c)
 	}
 	if (**format == ' ' || **format == '+')
 	{
-		if (c != 'd' && c != 'i' && (c != 's' || **format != ' '))
+		if (c != 'd' && c != 'i')
 			return (0);
 		*format = *format + 1;
 	}
