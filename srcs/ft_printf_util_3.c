@@ -93,7 +93,7 @@ void	*get_ptr(va_list *arg, size_t *var_size)
 	hex = int_to_hex((long int)ptr, 0);
 	if (!hex)
 		return (NULL);
-	*var_size = ft_strlen(hex + 2);
+	*var_size = ft_strlen(hex) + 2;
 	var = (void *)ft_strjoin("0x", hex);
 	free(hex);
 	return (var);
