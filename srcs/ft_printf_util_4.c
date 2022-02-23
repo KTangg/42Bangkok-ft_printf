@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
-#include <limits.h>
 
 static char	*create_hex_char(unsigned long nbr, char *base_16)
 {
