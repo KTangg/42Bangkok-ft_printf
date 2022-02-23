@@ -85,7 +85,16 @@ void	*get_hex(va_list *arg, size_t *var_size, int mode)
 
 void	*get_ptr(va_list *arg, size_t *var_size)
 {
-	(void)arg;
-	(void)var_size;
-	return (NULL);
+	char			*hex;
+	void			*var;
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)va_arg(*arg, void *);
+	hex = int_to_hex((long int)ptr, 0);
+	if (!hex)
+		return (NULL);
+	*var_size = ft_strlen(hex + 2);
+	var = (void *)ft_strjoin("0x", hex);
+	free(hex);
+	return (var);
 }
