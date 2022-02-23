@@ -40,13 +40,13 @@ static char	*create_hex_char(long nbr, char *base_16)
 	return (str);
 }
 
-static char	*int_to_hex(long long nbr, int mode)
+static char	*int_to_hex(long nbr, int mode)
 {
 	char	*base_16;
 	char	*hex_str;
 
 	if (nbr < 0)
-		nbr = 4294967295 + (nbr + 1);
+		nbr = 0xffffffff + (nbr + 1);
 	base_16 = "0123456789ABCDEF";
 	if (mode == 0)
 		base_16 = "0123456789abcdef";
