@@ -18,19 +18,19 @@ static int	check_prefix(char **format, char c)
 	{
 		if (c != 'x' && c != 'X')
 			return (0);
-		*format++;
+		*format = *format + 1;
 	}
 	if (**format == ' ' || **format == '+')
 	{
 		if (c != 'd' && c != 'i')
 			return (0);
-		*format++;
+		*format = *format + 1;
 	}
 	if (**format == '0')
 	{
 		if (c != 'i' && c != 'u' && c != 'd' && c != 'x' && c != 'X')
 			return (0);
-		*format++;
+		*format = *format + 1;
 	}
 	return (1);
 }
