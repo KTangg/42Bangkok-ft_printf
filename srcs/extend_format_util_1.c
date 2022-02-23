@@ -44,7 +44,7 @@ int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org)
 			return (0);
 		ft_memcpy(new_var, *var, *var_size - org);
 		filling(&new_var[extend], fill, '0');
-		ft_memcpy(&new_var[extend + fill], &((*var)[extend]), org);
+		ft_memcpy(&new_var[extend + fill], &(((unsigned char *)*var)[extend]), org);
 		free(*var);
 		*var_size = min;
 		*var = new_var;
@@ -72,7 +72,7 @@ int	extend_min(void **var, size_t *var_size, char **var_format, size_t org)
 			return (0);
 		ft_memcpy(new_var, *var, *var_size - org);
 		filling(&new_var[extend], fill, ' ');
-		ft_memcpy(&new_var[extend + fill], &((*var)[extend]), org);
+		ft_memcpy(&new_var[extend + fill], &(((unsigned char *)*var)[extend]), org);
 		free(*var);
 		*var_size = min;
 		*var = (void *)new_var;
