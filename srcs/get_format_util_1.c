@@ -12,13 +12,6 @@
 
 #include "libftprintf.h"
 
-static int	valid_zero_conv(char c)
-{
-	if (c != 'i' && c != 'u' && c != 'd' && c != 'x' && c != 'X')
-		return (0);
-	return (1);
-}
-
 static int	valid_prefix(char *format)
 {
 	char	c;
