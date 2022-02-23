@@ -31,6 +31,7 @@ static void	*before_signed(size_t min, size_t org, size_t var_size, void *var)
 	unsigned char	*new;
 
 	extend = var_size - org;
+	fill = min - var_size;
 	new = malloc(min);
 	if (!new)
 		return (0);
@@ -47,6 +48,7 @@ static void	*after_signed(size_t min, size_t org, size_t var_size, void *var)
 	unsigned char	*new;
 
 	extend = var_size - org + 1;
+	fill = min - var_size;
 	new = malloc(min);
 	if (!new)
 		return (0);
