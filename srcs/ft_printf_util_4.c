@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_util_3.c                                 :+:      :+:    :+:   */
+/*   ft_printf_util_4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/20 00:38:10 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/20 00:38:10 by spoolpra         ###   ########.fr       */
+/*   Created: 2022/02/23 12:49:54 by spoolpra          #+#    #+#             */
+/*   Updated: 2022/02/23 12:49:54 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,33 @@ static char	*int_to_hex(long nbr, int mode)
 	return (hex_str);
 }
 
-void	*get_hex(va_list *arg, size_t *var_size, int mode)
+static void	*nil_char(size_t *var_size)
 {
-	int		nbr;
-	char	*str;
+	char	*nil;
 	void	*var;
-	size_t	len;
 
-	nbr = va_arg(*arg, int);
-	str = int_to_hex(nbr, mode);
-	if (!str)
-		return (NULL);
-	len = ft_strlen(str);
-	if (len > 8)
-	{
-		*var_size = 8;
-		var = malloc(*var_size);
-		if (var)
-			var = ft_memcpy(var, &str[len - 7], 8);
-		free(str);
-		return (var);
-	}
-	*var_size = len;
-	var = malloc(*var_size);
+	nil = "(nil)";
+	var = malloc(sizeof(char) * 5);
+	*var_size = 5;
 	if (var)
-		var = ft_memcpy(var, str, len);
-	free(str);
+		var = ft_memcpy(var, nil, 5);
+	return (var);
+}
+
+void	*get_ptr(va_list *arg, size_t *var_size)
+{
+	char			*hex;
+	void			*var;
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)va_arg(*arg, void *);
+	if (!ptr)
+		return (nil_char(var_size));
+	hex = int_to_hex((unsigned long)ptr, 0);
+	if (!hex)
+		return (NULL);
+	*var_size = ft_strlen(hex) + 2;
+	var = (void *)ft_strjoin("0x", hex);
+	free(hex);
 	return (var);
 }
