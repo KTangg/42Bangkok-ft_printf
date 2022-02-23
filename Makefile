@@ -22,8 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar -rcs $@ $^
-bonus: $(OBJS_BONUS)
-	ar -rcs $(NAME) $^
+bonus: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -I $(INCS) $< -o $@
 clean:
