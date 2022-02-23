@@ -20,6 +20,7 @@
 int		ft_printf(const char *format, ...);
 int		ft_isdigit(int c);
 int		valid_flag(char *str);
+int		ft_atoi(const char *nptr);
 char	*ft_itoa(long n);
 char	*get_format(char **format);
 char	*ft_strjoin(const char *s1, const char *s2);
