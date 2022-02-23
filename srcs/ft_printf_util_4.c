@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
+#include <limits.h>
 
-static char	*create_hex_char(long nbr, char *base_16)
+static char	*create_hex_char(unsigned long nbr, char *base_16)
 {
 	char	*tmp;
 	char	*str;
@@ -40,13 +42,11 @@ static char	*create_hex_char(long nbr, char *base_16)
 	return (str);
 }
 
-static char	*int_to_hex(long nbr, int mode)
+static char	*int_to_hex(unsigned long nbr, int mode)
 {
 	char	*base_16;
 	char	*hex_str;
 
-	if (nbr < 0)
-		nbr = 0xffffffff + (nbr + 1);
 	base_16 = "0123456789ABCDEF";
 	if (mode == 0)
 		base_16 = "0123456789abcdef";
