@@ -12,8 +12,8 @@
 
 #include "libftprintf.h"
 
-int	extend_min(void **var, size_t *var_size, char **var_format);
-int	extend_zero(void **var, size_t *var_size, char **var_format);
+int	extend_min(void **var, size_t *var_size, char **var_format, size_t org);
+int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org);
 
 static int	extend_hex(void **var, size_t *var_size, char **var_format, char c)
 {
@@ -47,6 +47,7 @@ static int	extend_pos(void **var, size_t *var_size, char **var_format)
 	char	*prefix_str;
 
 	prefix_str = "+";
+	*var_format = *var_format + 1;
 	prefix = malloc(1);
 	if (!prefix)
 		return (0);
@@ -70,6 +71,7 @@ static int	extend_spc(void **var, size_t *var_size, char **var_format)
 	void	*prefix;
 	char	*prefix_str;
 
+	*var_format = *var_format + 1;
 	prefix_str = " ";
 	prefix = malloc(1);
 	if (!prefix)
@@ -105,10 +107,10 @@ char	*extend_format(char *var_format, void *var, size_t *var_size)
 		if (!extend_spc(&var, var_size, &var_format))
 			return (NULL);
 	if (*var_format == '0')
-		if (!extend_zero(&var, var_size, &var_format))
+		if (!extend_zero(&var, var_size, &var_format, org_size))
 			return (NULL);
 	else
-		if (!extend_min(&var, var_size, &var_format))
+		if (!extend_min(&var, var_size, &var_format, org_size))
 			return (NULL);
 	return (var);
 }
