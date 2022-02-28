@@ -20,6 +20,10 @@ static int	check_prefix_2(char **format, char c)
 			return (0);
 		*format = *format + 1;
 	}
+	if (**format == '.')
+		*format = *format + 1;
+	if (**format == '-')
+		*format = *format + 1;
 	return (1);
 }
 
