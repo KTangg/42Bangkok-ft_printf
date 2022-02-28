@@ -87,20 +87,14 @@ char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 	if (*var_format == '0')
 		if (!extend_zero(&var, var_size, &var_format, org_size))
 			return (NULL);
-	else if (*var_format == ' ')
-	{
+	if (*var_format == ' ')
 		if (!extend_min(&var, var_size, &var_format, org_size))
 			return (NULL);
-	}
-	else if (*var_format == '-')
-	{
+	if (*var_format == '-')
 		if (!extend_right(&var, var_size, &var_format))
 			return (NULL);
-	}
-	else if (*var_format == '.')
-	{
+	if (*var_format == '.')
 		if (!cutting_flag(&var, var_size, &var_format))
 			return (NULL);
-	}
 	return (var);
 }
