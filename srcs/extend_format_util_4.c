@@ -27,7 +27,7 @@ static void	filling(void *var, size_t n, char c)
 
 size_t	find_start(void *var, size_t *var_size, size_t *org)
 {
-	size_t			i;
+	int			i;
 	size_t			org_size;
 	unsigned char	*str;
 
@@ -59,9 +59,9 @@ int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
 	{
 		fill = min - org;
 		new = (unsigned char *)malloc(fill + *var_size);
-		ft_memcpy(new, *var, *var_size - org);
-		filling(&new[*var_size - org], fill, '0');
-		ft_memcpy(&new[*var_size - org + fill], (*var + *var_size - org), org);
+		ft_memcpy(new, *var, start);
+		filling(&new[start], fill, '0');
+		ft_memcpy(&new[start + fill], (*var + start), org);
 		free(*var);
 		*var_size = *var_size + fill;
 		if (!new)
