@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-static int	check_prefix2(char **format, char c)
+static int	check_prefix_2(char **format, char c)
 {
 	if (**format == ' ')
 	{
