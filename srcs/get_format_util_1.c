@@ -12,6 +12,17 @@
 
 #include "libftprintf.h"
 
+static int	check_prefix2(char **format, char c)
+{
+	if (**format == ' ')
+	{
+		if (c != 'd' && c != 'i' && c != 's')
+			return (0);
+		*format = *format + 1;
+	}
+	return (1);
+}
+
 static int	check_prefix(char **format, char c)
 {
 	if (**format == '#')
@@ -20,7 +31,7 @@ static int	check_prefix(char **format, char c)
 			return (0);
 		*format = *format + 1;
 	}
-	if (**format == ' ' || **format == '+')
+	if (**format == '+')
 	{
 		if (c != 'd' && c != 'i')
 			return (0);
@@ -32,6 +43,8 @@ static int	check_prefix(char **format, char c)
 			return (0);
 		*format = *format + 1;
 	}
+	if (!check_prefix_2(format, c))
+		return (0);
 	return (1);
 }
 
