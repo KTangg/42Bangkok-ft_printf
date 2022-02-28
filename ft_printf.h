@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -24,8 +24,8 @@ int		ft_atoi(const char *nptr);
 int		extend_spc(void **var, size_t *var_size, char **var_format);
 int		extend_pos(void **var, size_t *var_size, char **var_format);
 int		extend_hex(void **var, size_t *var_size, char **var_format, char c);
+int		extend_zero(void **var, size_t *var_size, char **format, size_t org);
 int		extend_min(void **var, size_t *var_size, char **var_format, size_t org);
-int		extend_zero(void **var, size_t *var_size, char **var_format, size_t org);
 char	*ft_itoa(long n);
 char	*get_format(char **format);
 char	*ft_strjoin(const char *s1, const char *s2);

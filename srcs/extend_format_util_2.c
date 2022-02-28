@@ -60,7 +60,7 @@ char	*extend_format_n(char *var_format, void *var, size_t *var_size)
 	return (var);
 }
 
-int		cutting_flag(void **var, size_t *var_size, char **var_format)
+int	cutting_flag(void **var, size_t *var_size, char **var_format)
 {
 	size_t			max;
 	unsigned char	*new;

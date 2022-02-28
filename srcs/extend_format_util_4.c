@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 static void	filling(void *var, size_t n, char c)
 {
@@ -27,7 +26,7 @@ static void	filling(void *var, size_t n, char c)
 
 size_t	find_start(void *var, size_t *var_size, size_t *org)
 {
-	int			i;
+	int				i;
 	size_t			org_size;
 	unsigned char	*str;
 
