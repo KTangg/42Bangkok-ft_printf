@@ -12,10 +12,7 @@
 
 #include "libftprintf.h"
 
-int	extend_min(void **var, size_t *var_size, char **var_format, size_t org);
-int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org);
-
-static int	extend_hex(void **var, size_t *var_size, char **var_format, char c)
+int	extend_hex(void **var, size_t *var_size, char **var_format, char c)
 {
 	void	*new_var;
 	void	*prefix;
@@ -42,7 +39,7 @@ static int	extend_hex(void **var, size_t *var_size, char **var_format, char c)
 	return (1);
 }
 
-static int	extend_pos(void **var, size_t *var_size, char **var_format)
+int	extend_pos(void **var, size_t *var_size, char **var_format)
 {
 	void	*new_var;
 	void	*prefix;
@@ -67,7 +64,7 @@ static int	extend_pos(void **var, size_t *var_size, char **var_format)
 	return (1);
 }
 
-static int	extend_spc(void **var, size_t *var_size, char **var_format)
+int	extend_spc(void **var, size_t *var_size, char **var_format)
 {
 	void	*new_var;
 	void	*prefix;

@@ -25,6 +25,9 @@ char	*extend_format_n(char *var_format, void *var, size_t *var_size)
 	if (*var_format == '+')
 		if (!extend_pos(&var, var_size, &var_format))
 			return (NULL);
+	if (*var_format == ' ')
+		if (!extend_spc(&var, var_size, &var_format))
+			return (NULL);
 	if (*var_format == '0')
 	{
 		if (!extend_zero(&var, var_size, &var_format, org_size))
@@ -35,9 +38,6 @@ char	*extend_format_n(char *var_format, void *var, size_t *var_size)
 		if (!extend_min(&var, var_size, &var_format, org_size))
 			return (NULL);
 	}
-	if (*var_format == ' ')
-		if (!extend_spc(&var, var_size, &var_format))
-			return (NULL);
 	return (var);
 }
 
@@ -59,7 +59,7 @@ char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 			return (NULL);
 	if (*var_format == ' ')
 	{
-		if (!extend_min(&var, var_size, &var_format))
+		if (!extend_min(&var, var_size, &var_format, org_size))
 			return (NULL);
 	}
 	else
