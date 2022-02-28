@@ -26,15 +26,12 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(addprefix $(OBJ_DIR),$(OBJS))
-	@make -C $(LIB_DIR) --silent
 	ar -rcs $@ $^
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< $(INCS) -o $@
 clean:
-	@make -C $(LIB_DIR) clean --silent
 	$(RM) $(OBJ_DIR)
 fclean: clean
-	@make -C $(LIB_DIR) fclean --silent
 	$(RM) $(NAME)
 re: fclean all
