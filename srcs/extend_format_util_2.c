@@ -12,6 +12,22 @@
 
 #include "libftprintf.h"
 
+char	*extend_format_n_2(char *var_format, void *var, size_t *var_size)
+{
+	char	c;
+	size_t	org_size;
+
+	c = var_format[ft_strlen(var_format) - 1];
+	org_size = *var_size;
+	if (*var_format == '-')
+		if (!extend_right(&var, var_size, &var_format))
+			return (NULL);
+	if (*var_format == '.')
+		if (!extend_zero(&var, var_size, &var_format, org_size))
+			return (NULL);
+	return (var);
+}
+
 char	*extend_format_n(char *var_format, void *var, size_t *var_size)
 {
 	char	c;
@@ -34,10 +50,7 @@ char	*extend_format_n(char *var_format, void *var, size_t *var_size)
 			return (NULL);
 	}
 	else
-	{
-		if (!extend_min(&var, var_size, &var_format, org_size))
-			return (NULL);
-	}
+		return (extend_format_n_2(var_format, var, var_size));
 	return (var);
 }
 
@@ -48,23 +61,22 @@ char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 
 	c = var_format[ft_strlen(var_format) - 1];
 	org_size = *var_size;
-	if (*var_format == '#')
-		if (!extend_hex(&var, var_size, &var_format, c))
-			return (NULL);
-	if (*var_format == '+')
-		if (!extend_pos(&var, var_size, &var_format))
-			return (NULL);
 	if (*var_format == '0')
 		if (!extend_zero(&var, var_size, &var_format, org_size))
 			return (NULL);
-	if (*var_format == ' ')
+	else if (*var_format == ' ')
 	{
 		if (!extend_min(&var, var_size, &var_format, org_size))
 			return (NULL);
 	}
-	else
+	else if (*var_format == '-')
 	{
-		if (!extend_min(&var, var_size, &var_format, org_size))
+		if (!extend_right(&var, var_size, &var_format))
+			return (NULL);
+	}
+	else if (*var_format == '.')
+	{
+		if (!cutting_flag(&var, var_size, &var_format, org_size))
 			return (NULL);
 	}
 	return (var);
