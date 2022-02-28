@@ -67,7 +67,7 @@ int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
 
 	*var_format = *var_format + 1;
 	min = (size_t)ft_atoi(*var_format);
-	c = (unsigned char *)var[*var_size - org];
+	c = ((unsigned char *)var)[*var_size - org];
 	if (min > org)
 	{
 		fill = min - org;
