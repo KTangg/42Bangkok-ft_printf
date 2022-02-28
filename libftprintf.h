@@ -28,6 +28,7 @@ int		cutting_flag(void **var, size_t *var_size, char **var_format);
 int		extend_right(void **var, size_t *var_size, char **var_format);
 int		extend_hex(void **var, size_t *var_size, char **var_format, char c);
 int		extend_min(void **var, size_t *var_size, char **var_format, size_t org);
+int		extend_dot(void **var, size_t *var_size, char **var_format, size_t org);
 int		extend_zero(void **var, size_t *var_size, char **var_format, size_t org);
 char	*ft_itoa(long n);
 char	*get_format(char **format);

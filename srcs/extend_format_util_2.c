@@ -21,8 +21,14 @@ char	*extend_format_n_2(char *var_format, void *var, size_t *var_size)
 		if (!extend_right(&var, var_size, &var_format))
 			return (NULL);
 	if (*var_format == '.')
-		if (!extend_zero(&var, var_size, &var_format, org_size))
+		if (!extend_dot(&var, var_size, &var_format, org_size))
 			return (NULL);
+	else
+	{
+		var_format = var_format - 1;
+		if (!extend_min(&var, var_size, &var_format, org_size))
+			return (NULL);
+	}
 	return (var);
 }
 
@@ -92,5 +98,11 @@ char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 	if (*var_format == '.')
 		if (!cutting_flag(&var, var_size, &var_format))
 			return (NULL);
+	else
+	{
+		var_format = var_format - 1;
+		if (!extend_min(&var, var_size, &var_format, org_size))
+			return (NULL);
+	}
 	return (var);
 }

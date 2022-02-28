@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extend_format_util_1.c                             :+:      :+:    :+:   */
+/*   extend_format_util_4.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spoolpra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 17:29:45 by spoolpra          #+#    #+#             */
-/*   Updated: 2022/02/23 17:29:45 by spoolpra         ###   ########.fr       */
+/*   Created: 2022/02/28 22:38:04 by spoolpra          #+#    #+#             */
+/*   Updated: 2022/02/28 22:38:04 by spoolpra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*before_signed(size_t min, size_t org, size_t var_size, void *var)
 	unsigned char	*new;
 
 	extend = var_size - org;
-	fill = min - var_size;
+	fill = min - org;
 	new = malloc(min);
 	if (!new)
 		return (0);
@@ -48,7 +48,7 @@ static void	*after_signed(size_t min, size_t org, size_t var_size, void *var)
 	unsigned char	*new;
 
 	extend = var_size - org + 1;
-	fill = min - var_size;
+	fill = min - org;
 	new = malloc(min);
 	if (!new)
 		return (0);
@@ -58,26 +58,28 @@ static void	*after_signed(size_t min, size_t org, size_t var_size, void *var)
 	return ((void *)new);
 }
 
-int	extend_zero(void **var, size_t *var_size, char **var_format, size_t org)
+int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
 {
-	void			*new_var;
+	void			*new;
+	size_t			fill;
 	size_t			min;
 	unsigned char	c;
 
 	*var_format = *var_format + 1;
 	min = (size_t)ft_atoi(*var_format);
-	c = ((unsigned char *)*var)[0];
-	if (min > *var_size)
+	c = (unsigned char *)var[*var_size - org];
+	if (min > org)
 	{
+		fill = min - org;
 		if (c == '-')
-			new_var = after_signed(min, org, *var_size, *var);
+			new = after_signed(min, org, *var_size, *var);
 		else
-			new_var = before_signed(min, org, *var_size, *var);
+			new = before_signed(min, org, *var_size, *var);
 		free(*var);
-		*var_size = min;
-		if (!new_var)
+		*var_size = *var_size + fill;
+		if (!new)
 			return (0);
-		*var = new_var;
+		*var = new;
 	}
 	return (1);
 }
