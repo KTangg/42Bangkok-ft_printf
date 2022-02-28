@@ -54,6 +54,29 @@ char	*extend_format_n(char *var_format, void *var, size_t *var_size)
 	return (var);
 }
 
+int		cutting_flag(void **var, size_t *var_size, char **var_format)
+{
+	size_t			max;
+	unsigned char	*new;
+
+	*var_format = *var_format + 1;
+	max = (size_t)ft_atoi(*var_format);
+	if (max < *var_size)
+	{
+		new = malloc(max);
+		if (!new)
+		{
+			free(var);
+			return (0);
+		}
+		ft_memcpy(new, *var, max);
+		free(*var);
+		*var_size = max;
+		*var = (void *)new;
+	}
+	return (1);
+}
+
 char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 {
 	char	c;
@@ -76,7 +99,7 @@ char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 	}
 	else if (*var_format == '.')
 	{
-		if (!cutting_flag(&var, var_size, &var_format, org_size))
+		if (!cutting_flag(&var, var_size, &var_format))
 			return (NULL);
 	}
 	return (var);
