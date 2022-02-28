@@ -92,58 +92,13 @@ static int	extend_spc(void **var, size_t *var_size, char **var_format)
 	return (1);
 }
 
-char	*extend_format_s(char *var_format, void *var, size_t *var_size)
-{
-	char	c;
-	size_t	org_size;
-
-	c = var_format[ft_strlen(var_format) - 1];
-	org_size = *var_size;
-	if (*var_format == '#')
-		if (!extend_hex(&var, var_size, &var_format, c))
-			return (NULL);
-	if (*var_format == '+')
-		if (!extend_pos(&var, var_size, &var_format))
-			return (NULL);
-	if (*var_format == '0')
-		if (!extend_zero(&var, var_size, &var_format, org_size))
-			return (NULL);
-	else
-	{
-		if (!extend_min(&var, var_size, &var_format, org_size))
-			return (NULL);
-	}
-	if (*var_format == ' ')
-		if (!extend_spc(&var, var_size, &var_format))
-			return (NULL);
-	return (var);
-}
-
 char	*extend_format(char *var_format, void *var, size_t *var_size)
 {
 	char	c;
-	size_t	org_size;
 
 	c = var_format[ft_strlen(var_format) - 1];
-	org_size = *var_size;
 	if (c == 's')
 		return (extend_format_s(var_format, var, var_size));
-	if (*var_format == '#')
-		if (!extend_hex(&var, var_size, &var_format, c))
-			return (NULL);
-	if (*var_format == '+')
-		if (!extend_pos(&var, var_size, &var_format))
-			return (NULL);
-	if (*var_format == ' ')
-		if (!extend_spc(&var, var_size, &var_format))
-			return (NULL);
-	if (*var_format == '0')
-		if (!extend_zero(&var, var_size, &var_format, org_size))
-			return (NULL);
 	else
-	{
-		if (!extend_min(&var, var_size, &var_format, org_size))
-			return (NULL);
-	}
-	return (var);
+		return (extend_format_n(var_format, var, var_size));
 }
