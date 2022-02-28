@@ -77,7 +77,6 @@ int		cutting_flag(void **var, size_t *var_size, char **var_format)
 
 char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 {
-	char	c;
 	size_t	org_size;
 
 	c = var_format[ft_strlen(var_format) - 1];
