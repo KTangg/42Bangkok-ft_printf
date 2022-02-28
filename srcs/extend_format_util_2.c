@@ -79,7 +79,6 @@ char	*extend_format_s(char *var_format, void *var, size_t *var_size)
 {
 	size_t	org_size;
 
-	c = var_format[ft_strlen(var_format) - 1];
 	org_size = *var_size;
 	if (*var_format == '0')
 		if (!extend_zero(&var, var_size, &var_format, org_size))
