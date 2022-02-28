@@ -37,12 +37,12 @@ size_t	find_start(void *var, size_t *var_size, size_t *org)
 	while (i >= 0)
 	{
 		if (str[i] == '-' || str[i] == 'x' || str[i] == 'X')
-			break ;
+			return (i);
 		org_size++;
 		i--;
 	}
 	*org = org_size;
-	return (i);
+	return (0);
 }
 
 int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
