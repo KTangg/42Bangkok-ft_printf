@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 static void	filling(void *var, size_t n, char c)
 {
@@ -24,59 +25,41 @@ static void	filling(void *var, size_t n, char c)
 	}
 }
 
-static void	*before_signed(size_t min, size_t org, size_t var_size, void *var)
+size_t	find_start(void *var, size_t *var_size, size_t *org)
 {
-	size_t			fill;
-	size_t			extend;
-	unsigned char	*new;
+	size_t			*i;
+	size_t			org_size;
+	unsigned char	*str;
 
-	extend = var_size - org;
-	fill = min - org;
-	new = malloc(min);
-	if (!new)
-		return (0);
-	ft_memcpy(new, var, extend);
-	filling(&new[extend], fill, '0');
-	ft_memcpy(&new[extend + fill], &(((unsigned char *)var)[extend]), org);
-	return ((void *)new);
-}
-
-static void	*after_signed(size_t min, size_t org, size_t var_size, void *var)
-{
-	size_t			fill;
-	size_t			extend;
-	unsigned char	*new;
-
-	extend = var_size - org + 1;
-	fill = min - org;
-	new = malloc(min);
-	if (!new)
-		return (0);
-	ft_memcpy(new, var, extend);
-	filling(&new[extend], fill, '0');
-	ft_memcpy(&new[extend + fill], &(((unsigned char *)var)[extend]), org - 1);
-	return ((void *)new);
+	i = *var_size - 1;
+	org_size = 0;
+	str = (unsigned char *)var;
+	while (i >= 0)
+	{
+		if (str[i] == '-' || str[i] == 'x' || str[i] == 'X')
+			break ;
+		org_size++;
+		i--;
+	}
+	*org = org_size;
+	return (i);
 }
 
 int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
 {
 	void			*new;
-	size_t			fill;
 	size_t			min;
-	unsigned char	c;
+	size_t			start;
+	unsigned char	*c;
 
 	*var_format = *var_format + 1;
 	min = (size_t)ft_atoi(*var_format);
-	c = ((unsigned char *)var)[*var_size - org];
+	start = find_start(*var, var_size, &org);
 	if (min > org)
 	{
-		fill = min - org;
-		if (c == '-')
-			new = after_signed(min, org, *var_size, *var);
-		else
-			new = before_signed(min, org, *var_size, *var);
+		new = malloc(min - org + *var_size);
 		free(*var);
-		*var_size = *var_size + fill;
+		*var_size = *var_size + (min - org);
 		if (!new)
 			return (0);
 		*var = new;
