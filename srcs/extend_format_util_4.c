@@ -47,6 +47,19 @@ size_t	find_start(void *var, size_t *var_size, size_t *org)
 	return (0);
 }
 
+int	extend_dot_0(void **var, size_t *var_size)
+{
+	unsigned char	*new;
+
+	new = (unsigned char *)malloc(0);
+	if (!new)
+		return (0);
+	free(*var);
+	*var_size = 0;
+	*var = new;
+	return (1);
+}
+
 int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
 {
 	size_t			min;
@@ -57,6 +70,8 @@ int	extend_dot(void **var, size_t *var_size, char **var_format, size_t org)
 	*var_format = *var_format + 1;
 	min = (size_t)ft_atoi(*var_format);
 	start = find_start(*var, var_size, &org);
+	if (min == 0 && *var_size == 1 && ((char *)*var)[0] == '0')
+		return (extend_dot_0(var, var_size));
 	if (min > org)
 	{
 		fill = min - org;

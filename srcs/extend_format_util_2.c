@@ -75,7 +75,8 @@ int	cutting_flag(void **var, size_t *var_size, char **var_format)
 			free(var);
 			return (0);
 		}
-		ft_memcpy(new, *var, max);
+		if (max != 0)
+			ft_memcpy(new, *var, max);
 		free(*var);
 		*var_size = max;
 		*var = (void *)new;
